@@ -1,0 +1,14 @@
+.home {
+    background-color: #ffffff;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding-left: 25px;
+}
+
+.home p {
+    border: 1px solid red;
+    width: 100px;
+    height: 100px;
+}
