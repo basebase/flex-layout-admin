@@ -87,7 +87,12 @@ class LayoutGridPage extends React.Component {
         return (
             <div className="layout-pages">
                 <div className="component">
-
+                    <a href="#">折线图</a>
+                    <a href="#">柱状图</a>
+                    <a href="#">雷达图</a>
+                    <a href="#">地图</a>
+                    <a href="#">气泡</a>
+                    <a href="#">面板</a>
                 </div>
                 <div className="layout-canvas">
                     <SaveLayout/>

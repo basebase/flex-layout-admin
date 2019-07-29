@@ -12,7 +12,7 @@ class Footer extends React.Component {
     render() {
         return (
             <div className="footer">
-                <p>韩国 - 根据您的活动记录 - 使用确切位置 - 了解详情</p>
+                <p>本系统由小墨鱼友情赞助....</p>
             </div>
         )
     }

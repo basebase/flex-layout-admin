@@ -1,11 +1,14 @@
 .layout-pages {
     display: flex;
+    flex-direction: column;
     background-color: #ffffff;
 }
 
 .component {
-    width: 50px;
+    height: 30px;
+    width: 800px;
     border: 1px solid red;
+    margin: 10px auto;
 }
 
 .layout-canvas {
