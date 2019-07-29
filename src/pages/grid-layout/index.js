@@ -4,6 +4,7 @@
 import React from 'react'
 import _ from "lodash"
 import { Responsive, WidthProvider } from "react-grid-layout"
+import SaveLayout from './saveLayout'
 import 'react-grid-layout/css/styles.css'
 import './index.css'
 
@@ -89,22 +90,23 @@ class LayoutGridPage extends React.Component {
 
                 </div>
                 <div className="layout-canvas">
+                    <SaveLayout/>
 
-                    <ResponsiveReactGridLayout
-                        {...this.props}
-                        layouts={this.state.layouts}
-                        onBreakpointChange={this.onBreakpointChange}
-                        onLayoutChange={this.onLayoutChange}
-                        // WidthProvider option
-                        measureBeforeMount={false}
-                        // I like to have it animate on mount. If you don't, delete `useCSSTransforms` (it's default `true`)
-                        // and set `measureBeforeMount={true}`.
-                        useCSSTransforms={this.state.mounted}
-                        compactType={this.state.compactType}
-                        preventCollision={!this.state.compactType}
-                    >
-                        {this.generateDOM()}
-                    </ResponsiveReactGridLayout>
+                    {/*<ResponsiveReactGridLayout*/}
+                        {/*{...this.props}*/}
+                        {/*layouts={this.state.layouts}*/}
+                        {/*onBreakpointChange={this.onBreakpointChange}*/}
+                        {/*onLayoutChange={this.onLayoutChange}*/}
+                        {/*// WidthProvider option*/}
+                        {/*measureBeforeMount={false}*/}
+                        {/*// I like to have it animate on mount. If you don't, delete `useCSSTransforms` (it's default `true`)*/}
+                        {/*// and set `measureBeforeMount={true}`.*/}
+                        {/*useCSSTransforms={this.state.mounted}*/}
+                        {/*compactType={this.state.compactType}*/}
+                        {/*preventCollision={!this.state.compactType}*/}
+                    {/*>*/}
+                        {/*{this.generateDOM()}*/}
+                    {/*</ResponsiveReactGridLayout>*/}
                 </div>
             </div>
         )
