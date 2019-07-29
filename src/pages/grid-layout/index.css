@@ -1,0 +1,18 @@
+.layout-pages {
+    display: flex;
+    background-color: #ffffff;
+}
+
+.component {
+    width: 50px;
+    border: 1px solid red;
+}
+
+.layout-canvas {
+    flex-grow: 1;
+    /*background-color: #282c34;*/
+}
+
+.r-grid {
+    border: 1px solid red;
+}
