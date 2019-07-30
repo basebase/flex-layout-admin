@@ -45,7 +45,7 @@ class SaveLayout extends React.PureComponent {
     static defaultProps = {
         className: "layout",
         cols: 12,
-        rowHeight: 30,
+        rowHeight: 20,
         onLayoutChange: function() {}
     }
 
@@ -64,7 +64,6 @@ class SaveLayout extends React.PureComponent {
         this.props.onLayoutChange(layout); // updates status display
     }
 
-
     render() {
         return (
             <div>
@@ -72,21 +71,22 @@ class SaveLayout extends React.PureComponent {
                 <ReactGridLayout
                     {...this.props}
                     layout={this.state.layout}
+                    // draggableCancel=".r-grid7" 不能拖放，个人不建议这样使用
                     onLayoutChange={this.onLayoutChange}
                 >
-                    <div className="r-grid" key="1" data-grid={{ w: 2, h: 3, x: 0, y: 0 }}>
-                        <span className="text">1</span>
+                    <div className="r-grid7"  key="1" data-grid={{ w: 1, h: 4, x: 0, y: 0}}>
+                        <span className="text1">1</span>
                     </div>
-                    <div className="r-grid" key="2" data-grid={{ w: 2, h: 3, x: 2, y: 0 }}>
+                    <div className="r-grid7" key="2" data-grid={{ w: 1, h: 3, x: 1, y: 0 }}>
                         <span className="text">2</span>
                     </div>
-                    <div className="r-grid" key="3" data-grid={{ w: 2, h: 3, x: 4, y: 0 }}>
+                    <div className="r-grid" key="3" data-grid={{ w: 2, h: 3, x: 2, y: 0 }}>
                         <span className="text">3</span>
                     </div>
-                    <div className="r-grid" key="4" data-grid={{ w: 2, h: 3, x: 6, y: 0 }}>
+                    <div className="r-grid" key="4" data-grid={{ w: 2, h: 3, x: 3, y: 0 }}>
                         <span className="text">4</span>
                     </div>
-                    <div className="r-grid" key="5" data-grid={{ w: 2, h: 3, x: 8, y: 0 }}>
+                    <div className="r-grid" key="5" data-grid={{ w: 2, h: 3, x: 4, y: 0 }}>
                         <span className="text">5</span>
                     </div>
                 </ReactGridLayout>
