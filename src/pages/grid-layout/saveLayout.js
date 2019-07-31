@@ -4,6 +4,8 @@
 import React from 'react'
 import RGL, { WidthProvider } from 'react-grid-layout'
 
+import BarComponent from '../../components/chart/bar'
+
 const ReactGridLayout = WidthProvider(RGL)
 const originalLayout = getFromLS("layout") || []
 
@@ -74,9 +76,13 @@ class SaveLayout extends React.PureComponent {
                     // draggableCancel=".r-grid7" 不能拖放，个人不建议这样使用
                     onLayoutChange={this.onLayoutChange}
                 >
-                    <div className="r-grid7"  key="1" data-grid={{ w: 1, h: 4, x: 0, y: 0}}>
-                        <span className="text1">1</span>
+                    <div className="r-grid7" key="1" data-grid={{ w: 1, h: 4, x: 0, y: 0}} width="100%" height="100%">
+                        {/*<span className="text1">1</span>*/}
+                        <BarComponent />
                     </div>
+
+
+
                     <div className="r-grid7" key="2" data-grid={{ w: 1, h: 3, x: 1, y: 0 }}>
                         <span className="text">2</span>
                     </div>
