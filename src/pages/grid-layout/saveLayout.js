@@ -37,7 +37,9 @@ class SaveLayout extends React.PureComponent {
     constructor(props) {
         super(props)
         this.state = {
-            layout: JSON.parse(JSON.stringify(originalLayout))
+            layout: JSON.parse(JSON.stringify(originalLayout)),
+            width: 300,
+            height: 500
         };
 
         this.onLayoutChange = this.onLayoutChange.bind(this)
@@ -66,6 +68,16 @@ class SaveLayout extends React.PureComponent {
         this.props.onLayoutChange(layout); // updates status display
     }
 
+    handleResizeStop = (layout, oldItem, newItem, placeholder, e, element) => {
+        let id = newItem.i
+        let refs = {...this.refs}
+        console.log("refs ", refs[id].clientWidth, " id ", newItem)
+        this.setState({
+            width: refs[id].clientWidth,
+            height: refs[id].clientHeight
+        }, () => {console.log("ww: ", this.state.width, " hh: ", this.state.height)})
+    }
+
     render() {
         return (
             <div>
@@ -75,10 +87,10 @@ class SaveLayout extends React.PureComponent {
                     layout={this.state.layout}
                     // draggableCancel=".r-grid7" 不能拖放，个人不建议这样使用
                     onLayoutChange={this.onLayoutChange}
+                    onResizeStop={this.handleResizeStop}
                 >
-                    <div className="r-grid7" key="1" data-grid={{ w: 1, h: 4, x: 0, y: 0}} width="100%" height="100%">
-                        {/*<span className="text1">1</span>*/}
-                        <BarComponent />
+                    <div className="r-grid7" key="bar" ref="bar" data-grid={{ w: 1, h: 4, x: 0, y: 0}}>
+                        <BarComponent    width={this.state.width} height={this.state.height} />
                     </div>
 
 

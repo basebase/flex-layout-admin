@@ -10,14 +10,18 @@ require('echarts/lib/component/title')
 class BarComponent extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            width: this.props.width,
+            height: this.props.height
+        }
     }
 
 
-
-    resizeWorldMapContainer1 = () => {
-        let myChart = document.getElementById('bar-content')
-        myChart.style.width = window.innerWidth
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            width: nextProps.width,
+            height: nextProps.height
+        });
     }
 
     componentDidMount() {
@@ -43,18 +47,17 @@ class BarComponent extends React.Component {
             }]
         })
 
+        // 最新版本的echart可以这样写，可以跟随div大小变大变小
+        myChart.on("finished", function () {
+            myChart.resize()
+        })
 
-        window.onresize = function () {
-            //重置容器高宽
-            this.resizeWorldMapContainer1();
-            myChart.resize();
-        }
     }
 
     render() {
         return (
-            <div id="bar-content"  style={{ width: 500, height: 600 }} className="bar-dg">
-
+            <div id="bar-content"  style={{ ...this.state }} className="bar-dg">
+                {console.log("w: ", this.state.width, " h: ", this.state.height)}
             </div>
         )
     }
