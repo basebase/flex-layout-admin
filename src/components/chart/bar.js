@@ -11,6 +11,7 @@ class BarComponent extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            containKey: this.props.containKey,
             width: this.props.width,
             height: this.props.height
         }
@@ -21,11 +22,11 @@ class BarComponent extends React.Component {
         this.setState({
             width: nextProps.width,
             height: nextProps.height
-        });
+        }, () => {console.log("bar width: ", this.state.width, " bar height: ", this.state.height)});
     }
 
     componentDidMount() {
-        let myChart = echarts.init(document.getElementById('bar-content'))
+        let myChart = echarts.init(document.getElementById(this.state.containKey))
 
 
 
@@ -56,7 +57,7 @@ class BarComponent extends React.Component {
 
     render() {
         return (
-            <div id="bar-content"  style={{ ...this.state }} className="bar-dg">
+            <div id={this.state.containKey}  style={{ ...this.state }} className="bar-dg">
                 {console.log("w: ", this.state.width, " h: ", this.state.height)}
             </div>
         )

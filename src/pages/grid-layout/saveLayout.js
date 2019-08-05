@@ -3,8 +3,10 @@
  */
 import React from 'react'
 import RGL, { WidthProvider } from 'react-grid-layout'
+import _ from "lodash";
 
 import BarComponent from '../../components/chart/bar'
+import { genBarChartData } from './genChart'
 
 const ReactGridLayout = WidthProvider(RGL)
 const originalLayout = getFromLS("layout") || []
@@ -37,6 +39,8 @@ class SaveLayout extends React.PureComponent {
     constructor(props) {
         super(props)
         this.state = {
+            id: 1,
+            chartComponents: [],
             layout: JSON.parse(JSON.stringify(originalLayout)),
             width: 300,
             height: 500
@@ -61,6 +65,18 @@ class SaveLayout extends React.PureComponent {
         })
     }
 
+    addBarChart = () => {
+        let id = this.state.id + 1
+        let barChart = genBarChartData(`key-${id}`, `bar-${id}`)
+        let cs = this.state.chartComponents
+        cs.push(barChart)
+        this.setState({
+            chartComponents: cs,
+            id: id
+        }, ()=> {console.log(id)})
+    }
+
+
     onLayoutChange(layout) {
         /*eslint no-console: 0*/
         saveToLS("layout", layout);
@@ -78,10 +94,31 @@ class SaveLayout extends React.PureComponent {
         }, () => {console.log("ww: ", this.state.width, " hh: ", this.state.height)})
     }
 
+    getComponents = (item, index) => {
+        let keyId = `key-${this.state.id}`
+        let barId = `bar-${this.state.id}`
+        console.log("{item}", {item})
+        return (
+
+            <div className="r-grid7" key={keyId} ref={keyId} data-grid={{ w: 1, h: 4, x: {index}, y: 0}}>
+                <BarComponent containKey={barId}  width={this.state.width} height={this.state.height} />
+            </div>
+
+        )
+    }
+
+
+
     render() {
+
+
+
+
+
         return (
             <div>
                 <button onClick={this.resetLayout}>Reset Layout</button>
+                <button onClick={this.addBarChart}>add Bar</button>
                 <ReactGridLayout
                     {...this.props}
                     layout={this.state.layout}
@@ -89,24 +126,21 @@ class SaveLayout extends React.PureComponent {
                     onLayoutChange={this.onLayoutChange}
                     onResizeStop={this.handleResizeStop}
                 >
-                    <div className="r-grid7" key="bar" ref="bar" data-grid={{ w: 1, h: 4, x: 0, y: 0}}>
-                        <BarComponent    width={this.state.width} height={this.state.height} />
-                    </div>
 
 
 
-                    <div className="r-grid7" key="2" data-grid={{ w: 1, h: 3, x: 1, y: 0 }}>
-                        <span className="text">2</span>
-                    </div>
-                    <div className="r-grid" key="3" data-grid={{ w: 2, h: 3, x: 2, y: 0 }}>
-                        <span className="text">3</span>
-                    </div>
-                    <div className="r-grid" key="4" data-grid={{ w: 2, h: 3, x: 3, y: 0 }}>
-                        <span className="text">4</span>
-                    </div>
-                    <div className="r-grid" key="5" data-grid={{ w: 2, h: 3, x: 4, y: 0 }}>
-                        <span className="text">5</span>
-                    </div>
+                    {/*<div className="r-grid7" key="bar" ref="bar" data-grid={{ w: 1, h: 4, x: 0, y: 0}}>*/}
+                        {/*<BarComponent containKey={`key-${this.state.id}`}  width={this.state.width} height={this.state.height} />*/}
+                    {/*</div>*/}
+
+
+
+                    {
+                        this.state.chartComponents.map((item, index) => (
+                            this.getComponents(item, index)
+                        ))
+                    }
+
                 </ReactGridLayout>
             </div>
         )
